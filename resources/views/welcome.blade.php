@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="{{ asset('public/css/app.css') }}">
         <!-- Styles -->
         <style>
             html, body {
@@ -49,46 +49,34 @@
                 font-size: 84px;
             }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
+            }
+            .flat {
+                border-radius: 0px;
+                width: 150px;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+        <div class="container">
+            <div class="flex-center position-ref full-height">
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/admin') }}" class="btn btn-primary flat">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-danger flat" role="">Login User</a>
+                            {{-- <a href="{{ route('register') }}">Register</a> --}}
+                        @endauth
+                    </div>
+                @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="content">
+                    <div class="title m-b-md">
+                        Laporan Keuangan
+                    </div>
+                    <h2>Laporan Keuangan - Tugas Kewirausahaan</h2>
                 </div>
             </div>
         </div>

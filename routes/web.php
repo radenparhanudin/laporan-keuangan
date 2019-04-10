@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/admin', 'HomeController@index')->name('admin');
+Route::middleware('auth')->group(function (){
+    Route::resource('transaksi', 'Transaksi');
+
+    //Produk
+    Route::resource('produk', 'Produk');
+    Route::get('data/produk', 'Produk@json')->name('data.produk');
+
+    Route::resource('stok', 'Stok');
+});
