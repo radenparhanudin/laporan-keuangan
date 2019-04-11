@@ -1,5 +1,5 @@
             <footer class="main-footer">
-                <strong>Copyright &copy; 2014-2016 <a href="https://web.facebook.com/zio.corp.31">Zio Corp</a>.</strong> All rights
+                <strong>Copyright &copy; 2014-2016 <a href="https://web.facebook.com/">Facebook</a>.</strong> All rights
                 reserved.
             </footer>
             <!-- /.control-sidebar -->
