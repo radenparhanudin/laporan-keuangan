@@ -16,3 +16,8 @@ body {
         display: none;
     }
 }
+
+.skin-blue .sidebar-menu .treeview-menu>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

@@ -15,8 +15,9 @@
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/Ionicons/css/ionicons.min.css">
         <!-- DataTables -->
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/select2/dist/css/select2.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -31,4 +32,5 @@
         <![endif]-->
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        @stack('style')
     </head>

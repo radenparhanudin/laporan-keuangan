@@ -13,4 +13,9 @@ class Product extends Model
         'stock',
         'price',
     ];
+
+    public function transaction()
+    {
+        return $this->belongsTo('App\Transaction');
+    }
 }

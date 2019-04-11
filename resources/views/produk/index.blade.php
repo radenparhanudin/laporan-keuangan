@@ -32,23 +32,16 @@
                             <tr>
                                   <th>Nama Produk</th>
                                   <th>Deskripsi</th>
-                                  <th>Stok</th>
-                                  <th>Price</th>
+                                  <th>Harga Beli</th>
+                                  <th>Harga Jual</th>
                                   <th>Time Update</th>
-                                  <th class="text-center">Aksi</th>
+                                  <th class="text-center" style="width: 100px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    <div class="pull-right">
-                        Total Data : 
-                    </div>
-                </div>
-                <!-- /.box-footer-->
             </div>
         </div>
     </div>
@@ -68,14 +61,15 @@
                 columns: [
                     { data: 'name', name: 'name' },
                     { data: 'description', name: 'description' },
-                    { data: 'stock', name: 'stock' },
                     { data: 'price', name: 'price' },
+                    { data: 'price_sale', name: 'price_sale' },
                     { data: 'updated_at', name: 'updated_at' },
                     { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
                     { className: "hidden", "targets": [ 4 ] },
                     { className: "text-right", "targets": [ 3 ] },
+                    { className: "text-right", "targets": [ 2 ] },
                     { className: "text-center", "targets": [ 5 ] }
                 ],
                 "language": {

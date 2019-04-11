@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Data Transakasi
+        Data Penambahan Stok Produk
         <small class="text-success">Selamat datang di Aplikasi Laporan Keuangan ( <span class="text-danger">User Login : {{ Auth::user()->name }}</span> )</small>
     </h1>
 </section>
@@ -14,9 +14,9 @@
         <div class="col-sm-12">
             <div class="box box-warning">
                 <div class="box-header with-border">
-                    <h1 class="box-title">Data Transakasi</span></h1>
+                    <h1 class="box-title">Data Penambahan Stok Produk</span></h1>
                     <div class="pull-right">
-                        <a href="{{ route('transaksi.create') }}" class="btn btn-warning flat"><i class="fa fa-plus"></i><span class="backto"> Tambah Transakasi</span></a>
+                        <a href="{{ route('stok.create') }}" class="btn btn-warning flat"><i class="fa fa-plus"></i><span class="backto"> Tambah Stok Produk</span></a>
                     </div>
                 </div>
                 <div class="box-body">
@@ -32,8 +32,8 @@
                             <tr>
                                   <th>Nama Produk</th>
                                   <th>Stok</th>
-                                  <th>Harga Jual</th>
-                                  <th>Total Harga Jual</th>
+                                  <th>Harga Beli</th>
+                                  <th>Total Harga Beli</th>
                                   <th>Time Update</th>
                                   <th class="text-center" style="width: 100px">Aksi</th>
                             </tr>
@@ -63,7 +63,7 @@
                 // stateSave: true,
                 processing: true,
                 // serverSide: true,
-                ajax: "{{ route('data.transaksi') }}",
+                ajax: "{{ route('data.stok') }}",
                 "order": [[ 4, "desc" ]],
                 columns: [
                     { data: 'product_id', name: 'product_id' },

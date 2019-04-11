@@ -44,25 +44,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Stok Awal</label>
+                                <label class="col-md-3 control-label">Harga Beli</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" id="stock" name="stock" value="{{ $produk->stock }}" placeholder="Stok Awal">
-                                </div>
-                                @if ($errors->has('stock'))
-                                    <span class="invalid-feedback text-danger" role="alert">
-                                        {{ $errors->first('stock') }}
-                                    </span>
-                                @endif    
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Harga Satuan</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" id="price" name="price" value="{{ $produk->price }}" placeholder="Harga Satuan">
+                                    <input type="text" class="form-control" id="price" name="price" value="{{ $produk->price }}" placeholder="Harga Beli">
                                     
                                 </div>
                                 @if ($errors->has('price'))
                                     <span class="invalid-feedback text-danger" role="alert">
                                         {{ $errors->first('price') }}
+                                    </span>
+                                @endif    
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Harga Jual</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" id="price_sale" name="price_sale" value="{{ $produk->price_sale }}" placeholder="Harga Jual">
+                                    
+                                </div>
+                                @if ($errors->has('price_sale'))
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                        {{ $errors->first('price_sale') }}
                                     </span>
                                 @endif    
                             </div>

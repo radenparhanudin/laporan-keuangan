@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Tambah Transaksi
+        Tambah Produk
         <small class="text-success">Selamat datang di Aplikasi Laporan Keuangan ( <span class="text-danger">User Login : {{ Auth::user()->name }}</span> )</small>
     </h1>
 </section>
@@ -14,13 +14,13 @@
         <div class="col-sm-6 col-sm-offset-3">
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h1 class="box-title">Tambah <span class="backto">Stok Transaksi</span></h1>
+                    <h1 class="box-title">Tambah <span class="backto">Stok Produk</span></h1>
                     <div class="pull-right">
-                        <a href="{{ route('transaksi.index') }}" class="btn btn-success flat"><i class="fa fa-undo"></i> <span class="backto">Ke Halaman Transaksi</span></a>
+                        <a href="{{ route('stok.index') }}" class="btn btn-success flat"><i class="fa fa-undo"></i> <span class="backto">Ke Halaman Stok Produk</span></a>
                     </div>
                 </div>
                 <div class="box-body">
-                    <form class="form-horizontal" action="{{ route('transaksi.store') }}" method="POST">
+                    <form class="form-horizontal" action="{{ route('stok.store') }}" method="POST">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Stok Terjual</label>
+                                <label class="col-sm-3 control-label">Tambah Stok</label>
                                     <input type="hidden"id="id" name="id" value="">
                                 <div class="col-sm-3">
                                     <input type="text" class="form-control" id="stock" name="stock" value="{{ old('stock')}}" placeholder="Stok">
@@ -53,14 +53,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Harga Jual</label>
+                                <label class="col-sm-3 control-label">Harga Beli</label>
                                 <div class="col-sm-4">
-                                    <input type="hidden" id="price" name="price" value="{{ old('price')}}">
-                                    <input type="text" class="form-control text-right" id="price_sale" name="price_sale" value="{{ old('price_sale')}}" readonly="" placeholder="Harga Jual">
+                                    <input type="text" class="form-control text-right" id="price" name="price" value="{{ old('price')}}" readonly="" placeholder="Harga Beli">
                                 </div>
-                                 @if ($errors->has('price_sale'))
+                                 @if ($errors->has('price'))
                                     <span class="invalid-feedback text-danger" role="alert">
-                                        {{ $errors->first('price_sale') }}
+                                        {{ $errors->first('price') }}
                                     </span>
                                 @endif    
                             </div>
