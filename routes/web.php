@@ -17,18 +17,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('admin');
+
 Route::middleware('auth')->group(function (){
-    Route::resource('transaksi', 'Transaksi');
-    Route::get('data/transaksi', 'Transaksi@json')->name('data.transaksi');
 
-    Route::resource('produk', 'Produk');
-    Route::get('data/produk', 'Produk@json')->name('data.produk');
-    Route::get('getdata/produk', 'Produk@getdataproduk')->name('getdataproduk');
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard')->middleware('role:administrator|kasir|keuangan');
+    Route::resource('transaksi', 'Transaksi')->middleware('role:administrator|kasir');
+    Route::get('data/transaksi', 'Transaksi@json')->name('data.transaksi')->middleware('role:administrator|kasir');
 
-    Route::resource('stok', 'Stok');
-    Route::get('data/stok', 'Stok@json')->name('data.stok');
+    Route::resource('produk', 'Produk')->middleware('role:administrator');
+    Route::get('data/produk', 'Produk@json')->name('data.produk')->middleware('role:administrator');
+    Route::get('getdata/produk', 'Produk@getdataproduk')->name('getdataproduk')->middleware('role:administrator');
 
-    Route::get('laporan', 'Laporan@index')->name('laporan.index');
+    Route::resource('stok', 'Stok')->middleware('role:administrator|kasir');
+    Route::get('data/stok', 'Stok@json')->name('data.stok')->middleware('role:administrator|kasir');
 
+    Route::get('laporan', 'Laporan@index')->name('laporan.index')->middleware('role:administrator|keuangan');
+    Route::get('cetaklaporan', 'Laporan@cetak')->name('cetaklaporan.index')->middleware('role:administrator|keuangan');
+    
 });

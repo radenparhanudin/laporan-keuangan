@@ -24,27 +24,59 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li>
-            <a href="{{ url('admin') }}">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            </a>
-        </li>
-        <li class="{{ set_active(['transaksi.index', 'transaksi.create', 'transaksi.edit']) }}"><a href="{{ route('transaksi.index') }}"><i class="fa fa-money"></i><span> Transaksi</span></a></li>
-        <li class="treeview {{ set_active(['produk.index', 'produk.create', 'produk.edit', 'stok.index', 'stok.create', 'stok.edit']) }}">
-            <a href="#">
-            <i class="fa fa-pencil"></i>
-            <span>Produk</span>
-            <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-                <li class="{{ set_active(['produk.index', 'produk.create', 'produk.edit']) }}"><a href="{{ route('produk.index') }}"><i class="fa fa-circle-o"></i> Daftar Produk</a></li>
-                <li class="{{ set_active(['stok.index', 'stok.create', 'stok.edit']) }}"><a href="{{ route('stok.index') }}"><i class="fa fa-circle-o"></i> Penambahan Stok Produk</a></li>
-            </ul>
-        </li>
-        <li class="{{ set_active('laporan.index') }}"><a href="{{ route('laporan.index') }}"><i class="fa fa-book"></i><span> Laporan</span></a></li>
-        <li><a href="#"><i class="fa fa-sign-out"></i><span> Keluar</span></a></li>
+        @if (Auth::user()->hasRole('administrator'))
+            <li>
+                <a href="{{ url('dashboard') }}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="{{ set_active(['transaksi.index', 'transaksi.create', 'transaksi.edit']) }}"><a href="{{ route('transaksi.index') }}"><i class="fa fa-money"></i><span> Transaksi</span></a></li>
+            <li class="treeview {{ set_active(['produk.index', 'produk.create', 'produk.edit', 'stok.index', 'stok.create', 'stok.edit']) }}">
+                <a href="#">
+                <i class="fa fa-pencil"></i>
+                <span>Produk</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ set_active(['produk.index', 'produk.create', 'produk.edit']) }}"><a href="{{ route('produk.index') }}"><i class="fa fa-circle-o"></i> Daftar Produk</a></li>
+                    <li class="{{ set_active(['stok.index', 'stok.create', 'stok.edit']) }}"><a href="{{ route('stok.index') }}"><i class="fa fa-circle-o"></i> Penambahan Stok Produk</a></li>
+                </ul>
+            </li>
+            <li class="{{ set_active('laporan.index') }}"><a href="{{ route('laporan.index') }}"><i class="fa fa-book"></i><span> Laporan</span></a></li>
+            <li class="{{ set_active('cetaklaporan.index') }}"><a target="_blank" href="{{ route('cetaklaporan.index') }}"><i class="fa fa-book"></i><span> Cetak Laporan</span></a></li>
+                <li><a href="#"><i class="fa fa-sign-out"></i><span> Keluar</span></a></li>
+        @elseif(Auth::user()->hasRole('kasir'))
+            <li>
+                <a href="{{ url('dashboard') }}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="{{ set_active(['transaksi.index', 'transaksi.create', 'transaksi.edit']) }}"><a href="{{ route('transaksi.index') }}"><i class="fa fa-money"></i><span> Transaksi</span></a></li>
+            <li class="treeview {{ set_active(['produk.index', 'produk.create', 'produk.edit', 'stok.index', 'stok.create', 'stok.edit']) }}">
+                <a href="#">
+                <i class="fa fa-pencil"></i>
+                <span>Produk</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ set_active(['stok.index', 'stok.create', 'stok.edit']) }}"><a href="{{ route('stok.index') }}"><i class="fa fa-circle-o"></i> Penambahan Stok Produk</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-sign-out"></i><span> Keluar</span></a></li>
+        @else
+            <li>
+                <a href="{{ url('dashboard') }}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="{{ set_active('laporan.index') }}"><a href="{{ route('laporan.index') }}"><i class="fa fa-book"></i><span> Laporan</span></a></li>
+            <li class="{{ set_active('cetaklaporan.index') }}"><a target="_blank" href="{{ route('cetaklaporan.index') }}"><i class="fa fa-book"></i><span> Cetak Laporan</span></a></li>
+            <li><a href="#"><i class="fa fa-sign-out"></i><span> Keluar</span></a></li>
+        @endif
     </ul>
 </section>
 <!-- /.sidebar -->

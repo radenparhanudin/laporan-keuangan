@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $user = Auth::user();
+        // return $user->getRoleNames();
+        // return $user->hasRole('keuangan');
+        // die();
         return view('home');
     }
 }

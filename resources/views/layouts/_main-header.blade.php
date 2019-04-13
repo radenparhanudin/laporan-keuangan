@@ -28,7 +28,7 @@
                         <img src="{{ asset('public/adminlte') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         <p>
                             {{  Auth::user()->name }}
-                            <small>Administrator - Laporan Keuangan</small>
+                            <small>{{  Auth::user()->name }} - Laporan Keuangan</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
