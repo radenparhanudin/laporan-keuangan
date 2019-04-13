@@ -23,3 +23,11 @@ function laporan($type_transaction, $product_id)
                 ->groupBy('product_id')
                 ->first();
 }
+
+function jumlah($type_transaction)
+{
+    return $transactions =  DB::table('transactions')
+                            ->select(DB::raw("SUM(total_price) as total"))
+                            ->where('type_transaction', $type_transaction)
+                            ->first();
+}

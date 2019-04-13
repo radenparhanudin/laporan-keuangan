@@ -23,6 +23,7 @@
     </head>
     <body>
         <table id="tabel" class="table table-bordered table-striped nowrap" style="width: 100%">
+            <caption><h1 class="text-center">Laporan Stok</h1></caption>
             <thead>
                 <tr>
                       <th  style="vertical-align: middle; text-align: center;">No</th>
@@ -45,6 +46,7 @@
         </table>
         <hr>
         <table id="tabelKeuangan" class="table table-bordered table-striped nowrap" style="width: 100%">
+            <caption><h1 class="text-center">Laporan Pemasukan dan Pengeluaran</h1></caption>
             <thead>
                 <tr>
                       <th class="text-center">No</th>
@@ -66,6 +68,13 @@
                     </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" class="text-right">Jumlah :</th>
+                    <th class="text-right">{{ number_format(jumlah('sale')->total, 2, ',', '.') }}</th>
+                    <th class="text-right">{{ number_format(jumlah('purchase')->total, 2, ',', '.') }}</th>
+                </tr>
+            </tfoot>
         </table>
 
 

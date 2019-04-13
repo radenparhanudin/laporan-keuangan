@@ -78,6 +78,13 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align:right">Jumlah : </th>
+                                <th class="text-right"></th>
+                                <th class="text-right"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -133,7 +140,51 @@
                         "sLast":     "Terakhir"
                     }
                 },
+                "footerCallback": function ( row, data, start, end, display ) {
+                    var api = this.api(), data;
+         
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\.\$,]/g, '')/100 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+         
+                    // Total over all pages
+                    totalPemasukan = api
+                        .column( 2 )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+         
+                  
+                    $( api.column( 2 ).footer() ).html(
+                        commaSeparateNumber(totalPemasukan)
+                    );
+
+                    // Total over all pages
+                    totalPengeluaran = api
+                        .column( 3 )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+         
+                  
+                    $( api.column( 3 ).footer() ).html(
+                        commaSeparateNumber(totalPengeluaran)
+                    );
+                 
+                },
             });
+            function commaSeparateNumber(val) {
+                while (/(\d+)(\d{3})/.test(val.toString())) {
+                    val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+                }
+                return val;
+            }
             new $.fn.dataTable.FixedHeader( tableKeuangan );
         });
     </script>
