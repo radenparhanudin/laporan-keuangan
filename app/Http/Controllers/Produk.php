@@ -121,8 +121,6 @@ class Produk extends Controller
 
         if ($validator->fails()){
             return redirect()->route('produk.edit', $id)->withInput()->withErrors($validator);
-             // return back()->withErrors($validator->getMessageBag()->toArray());
-            // return redirect()->route('produk.create')->withErrors($validator->getMessageBag()->toArray());
         }else{
             $produk              = Product::find($id);
             $produk->name        = $request->name;

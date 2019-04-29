@@ -32,6 +32,19 @@ Route::middleware('auth')->group(function (){
     Route::get('data/stok', 'Stok@json')->name('data.stok')->middleware('role:administrator|kasir');
 
     Route::get('laporan', 'Laporan@index')->name('laporan.index')->middleware('role:administrator|keuangan');
+
+    Route::resource('laporan_pemesanan', 'LaporanPemesananController')->middleware('role:administrator|keuangan');
+    Route::get('getdata/pemesanan', 'LaporanPemesananController@json')->name('getdatapemesanan')->middleware('role:administrator');
+
+    Route::resource('laporan_jasa', 'LaporanJasaController')->middleware('role:administrator|keuangan');
+    Route::get('getdata/jasa', 'LaporanJasaController@json')->name('getdatajasa')->middleware('role:administrator');
+
+    Route::resource('laporan_klise', 'LaporanKliseController')->middleware('role:administrator|keuangan');
+    Route::get('getdata/klise', 'LaporanKliseController@json')->name('getdataklise')->middleware('role:administrator');
+
+    Route::resource('laporan_kas', 'LaporanKasController')->middleware('role:administrator|keuangan');
+    Route::get('getdata/kas', 'LaporanKasController@json')->name('getdatakas')->middleware('role:administrator');
+
     Route::get('cetaklaporan', 'Laporan@cetak')->name('cetaklaporan.index')->middleware('role:administrator|keuangan');
     
 });

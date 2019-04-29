@@ -44,9 +44,24 @@
                     <li class="{{ set_active(['stok.index', 'stok.create', 'stok.edit']) }}"><a href="{{ route('stok.index') }}"><i class="fa fa-circle-o"></i> Penambahan Stok Produk</a></li>
                 </ul>
             </li>
-            <li class="{{ set_active('laporan.index') }}"><a href="{{ route('laporan.index') }}"><i class="fa fa-book"></i><span> Laporan</span></a></li>
-            <li class="{{ set_active('cetaklaporan.index') }}"><a target="_blank" href="{{ route('cetaklaporan.index') }}"><i class="fa fa-book"></i><span> Cetak Laporan</span></a></li>
-                <li><a href="#"><i class="fa fa-sign-out"></i><span> Keluar</span></a></li>
+            <li class="treeview {{ set_active(['laporan.index', 'laporan_pemesanan.index','laporan_pemesanan.create', 'laporan_pemesanan.edit','laporan_jasa.index','laporan_jasa.create', 'laporan_jasa.edit', 'laporan_klise.index','laporan_klise.create', 'laporan_klise.edit','laporan_kas.index','laporan_kas.create', 'laporan_kas.edit']) }}">
+                <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Laporan</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ set_active('laporan.index') }}"><a href="{{ route('laporan.index') }}"><i class="fa fa-circle-o"></i><span> Keuangan dan Stok</span></a></li>
+                    <li class="{{ set_active(['laporan_pemesanan.index','laporan_pemesanan.create', 'laporan_pemesanan.edit']) }}"><a href="{{ route('laporan_pemesanan.index') }}"><i class="fa fa-circle-o"></i><span> Pemesanan</span></a></li>
+                    <li class="{{ set_active(['laporan_jasa.index','laporan_jasa.create', 'laporan_jasa.edit']) }}"><a href="{{ route('laporan_jasa.index') }}"><i class="fa fa-circle-o"></i><span> Jasa</span></a></li>
+                    <li class="{{ set_active(['laporan_klise.index','laporan_klise.create', 'laporan_klise.edit']) }}"><a href="{{ route('laporan_klise.index') }}"><i class="fa fa-circle-o"></i><span> Klise</span></a></li>
+                    <li class="{{ set_active(['laporan_kas.index','laporan_kas.create', 'laporan_kas.edit']) }}"><a href="{{ route('laporan_kas.index') }}"><i class="fa fa-circle-o"></i><span> Kas</span></a></li>
+                </ul>
+            </li>
+            <li class="{{ set_active('cetaklaporan.index') }}"><a target="_blank" href="{{ route('cetaklaporan.index') }}"><i class="fa fa-print"></i><span> Cetak Laporan</span></a></li>
+            <li><a href="#"><i class="fa fa-sign-out"></i><span> Keluar</span></a></li>
         @elseif(Auth::user()->hasRole('kasir'))
             <li>
                 <a href="{{ url('dashboard') }}">

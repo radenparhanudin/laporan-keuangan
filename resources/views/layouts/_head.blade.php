@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/select2/dist/css/select2.min.css">
+        <!-- Date Picker -->
+        <link rel="stylesheet" href="{{ asset('public/adminlte') }}/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('public/adminlte') }}/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins

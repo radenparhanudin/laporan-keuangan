@@ -21,6 +21,9 @@
         <script src="{{ asset('public/adminlte') }}/bower_components/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
         <script src="{{ asset('public/adminlte') }}/bower_components/select2/dist/js/select2.min.js"></script>
         <script src="{{ asset('public/adminlte') }}/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <!-- datepicker -->
+        <script src="{{ asset('public/adminlte') }}/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="{{ asset('public/adminlte') }}/bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.id.min.js"></script>
         <!-- AdminLTE App -->
         <script src="{{ asset('public/adminlte') }}/dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
