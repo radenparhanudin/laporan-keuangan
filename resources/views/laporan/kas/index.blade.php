@@ -17,6 +17,7 @@
                     <h1 class="box-title">Data Kas</span></h1>
                     <div class="pull-right">
                         <a href="{{ route('laporan_kas.create') }}" class="btn btn-warning flat"><i class="fa fa-plus"></i><span class="backto"> Tambah Kas</span></a>
+                        <a href="{{ route('cetakkas.index') }}" target="_blank" class="btn btn-danger flat"><i class="fa fa-print"></i> Laporan Kas</a>
                     </div>
                 </div>
                 <div class="box-body">
@@ -41,6 +42,15 @@
                         </thead>
                         <tbody>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3" style="text-align:right">Total Kas : </th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -70,7 +80,7 @@
                 ],
                 "columnDefs": [
                     // { className: "hidden", "targets": [ 4 ] },
-                    // { className: "text-right", "targets": [ 3 ] },
+                    { className: "text-right", "targets": [ 3, 4, 5 ] },
                     // { className: "text-right", "targets": [ 2 ] },
                     // { className: "text-center", "targets": [ 5 ] }
                 ],
@@ -92,8 +102,59 @@
                         "sLast":     "Terakhir"
                     }
                 },
+                "footerCallback": function ( row, data, start, end, display ) {
+                    var api = this.api(), data;
+         
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\.\$,]/g, '')/100 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+         
+                    // Total over all pages
+                    total_debit = api
+                        .column( 3 )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+                    total_kredit = api
+                        .column( 4 )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+                    total_saldo = api
+                        .column( 5 )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+         
+                   
+                    // Update footer
+                    $( api.column( 3 ).footer() ).html(
+                        'Rp. ' + commaSeparateNumber(total_debit)
+                    );
+                     // Update footer
+                    $( api.column( 4 ).footer() ).html(
+                        'Rp. ' + commaSeparateNumber(total_kredit)
+                    );
+                     // Update footer
+                    $( api.column( 5 ).footer() ).html(
+                        'Rp. ' + commaSeparateNumber(total_saldo)
+                    );
+                },
             });
             new $.fn.dataTable.FixedHeader( table );
+            function commaSeparateNumber(val) {
+                while (/(\d+)(\d{3})/.test(val.toString())) {
+                    val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+                }
+                return val;
+            }
         });
     </script>
 @endpush
