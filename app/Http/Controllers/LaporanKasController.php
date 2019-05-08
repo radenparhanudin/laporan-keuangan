@@ -155,9 +155,14 @@ class LaporanKasController extends Controller
         return redirect()->route("laporan_kas.index");
     }
 
-    public function json(){
-        $field = LaporanKas::all();
+    public function json(Request $request){
+        $field = LaporanKas::select('tanggal_kas', 'nomor_kas', 'keterangan', 'debit', 'kredit', 'saldo', 'created_at', 'updated_at');
         return  Datatables::of($field)
+                ->filter(function ($query) use ($request) {
+                    if ($request->filled(['tanggal_awal','tanggal_akhir'])) {
+                        $query->whereBetween('tanggal_kas', array($request->get('tanggal_awal'), $request->get('tanggal_akhir')));
+                    }
+                })
                 ->addColumn('action', function ($field) {
                     return  '<a class="btn btn-xs btn-success edit " href="'.route('laporan_kas.edit', [$field->id]).'"><i class="glyphicon glyphicon-edit"></i> Edit</a>'.
                             '<form action="'.route('laporan_kas.destroy', [$field->id]).'" method="POST" class="pull-right" style="margin-left:10px">'.

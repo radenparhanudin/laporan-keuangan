@@ -157,9 +157,14 @@ class LaporanKliseController extends Controller
         return redirect()->route("laporan_klise.index");
     }
 
-    public function json(){
-        $field = LaporanKlise::all();
+    public function json(Request $request){
+        $field = LaporanKlise::select('tanggal_klise', 'nomor_klise', 'costumer', 'nota', 'harga', 'jenis');
         return  Datatables::of($field)
+                ->filter(function ($query) use ($request) {
+                    if ($request->filled(['tanggal_awal','tanggal_akhir'])) {
+                        $query->whereBetween('tanggal_klise', array($request->get('tanggal_awal'), $request->get('tanggal_akhir')));
+                    }
+                })
                 ->addColumn('action', function ($field) {
                     return  '<a class="btn btn-xs btn-success edit " href="'.route('laporan_klise.edit', [$field->id]).'"><i class="glyphicon glyphicon-edit"></i> Edit</a>'.
                             '<form action="'.route('laporan_klise.destroy', [$field->id]).'" method="POST" class="pull-right" style="margin-left:10px">'.

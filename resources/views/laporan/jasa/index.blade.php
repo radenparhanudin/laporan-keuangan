@@ -28,6 +28,20 @@
                               @endif
                         @endforeach
                     </div> <!-- end .flash-message -->
+                    <div class="data-filter">
+                        <form method="POST" id="search-form" class="form-inline" role="form">
+                            <div class="form-group">
+                                <label >Tanggal</label>
+                                <input type="text" class="form-control tanggal" name="tanggal_awal" id="tanggal_awal" placeholder="Dari Tanggal">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control tanggal" name="tanggal_akhir" id="tanggal_akhir" placeholder="Sampai Tanggal">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary flat">Rekap</button>
+                        </form>
+                    </div>
+                    <br>
                     <table id="tabel" class="table table-bordered table-striped nowrap" style="width: 100%">
                         <thead>
                             <tr>
@@ -66,8 +80,14 @@
                 responsive: true,
                 // stateSave: true,
                 processing: true,
-                // serverSide: true,
-                ajax: "{{ route('getdatajasa') }}",
+                serverSide: true,
+                ajax: {
+                    url: '{{ route('getdatajasa') }}',
+                    data: function (d) {
+                        d.tanggal_awal = $('input[name=tanggal_awal]').val();
+                        d.tanggal_akhir = $('input[name=tanggal_akhir]').val();
+                    }
+                },
                 // "order": [[ 4, "desc" ]],
                 columns: [
                     { data: 'tanggal_jasa', name: 'tanggal_jasa' },
@@ -137,6 +157,19 @@
                 }
                 return val;
             }
+        });
+
+        $('#search-form').on('submit', function(e) {
+            table.draw();
+            e.preventDefault();
+        });
+
+        $(".tanggal").datepicker({
+            autoclose: true,
+            todayBtn : 'linked',
+            todayHighlight: true,
+            language:'id',
+            format: "yyyy-mm-dd"
         });
     </script>
 @endpush
