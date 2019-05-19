@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLaporanJasasTable extends Migration
+class CreateLaporanJasaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,9 +20,7 @@ class CreateLaporanJasasTable extends Migration
             $table->string('costumer');
             $table->string('nota');
             $table->decimal('harga', 13, 2);
-            $table->string('keterangan');
-            $table->string('penjelasan');
-            $table->bigInteger('jumlah');
+            $table->string('jenis');
             $table->timestamps();
         });
     }

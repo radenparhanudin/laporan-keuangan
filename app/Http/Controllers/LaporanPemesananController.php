@@ -41,15 +41,20 @@ class LaporanPemesananController extends Controller
         $rules = [
             'tanggal_pemesanan' =>'required',
             'nomor_pemesanan'   =>'required',
-            'costumer'          =>'required',
-            'no_telp'           =>'required',
+            'costumer'      =>'required',
+            'harga'         =>'required',
+            'nota'          =>'required',
+            'jenis'         =>'required',
+
         ];
 
         $niceNames = [
             'tanggal_pemesanan' =>'Tanggal Pemesanan',
             'nomor_pemesanan'   =>'Nomor Pemesanan',
-            'costumer'          =>'Costumer',
-            'no_telp'           =>'No. Telepon',
+            'costumer'      =>'Costumer',
+            'harga'         =>'Harga',
+            'nota'          =>'Nota',
+            'jenis'         =>'Jenis',
         ];
 
         $validator = Validator::make(Input::all(),$rules, [], $niceNames);
@@ -57,13 +62,15 @@ class LaporanPemesananController extends Controller
         if ($validator->fails()){
             return redirect()->route('laporan_pemesanan.create')->withInput()->withErrors($validator);
         }else{
-            $field                    = new LaporanPemesanan;
+            $field                = new LaporanPemesanan;
             $field->tanggal_pemesanan = $request->tanggal_pemesanan;
             $field->nomor_pemesanan   = $request->nomor_pemesanan;
-            $field->costumer          = $request->costumer;
-            $field->no_telp           = $request->no_telp;
+            $field->costumer      = $request->costumer;
+            $field->harga         = $request->harga;
+            $field->nota          = $request->nota;
+            $field->jenis          = $request->jenis;
             $field->save();
-            $request->session()->flash('success', 'Pemesanan berhasil ditambahkan!');
+            $request->session()->flash('success', 'pemesanan berhasil ditambahkan!');
             return redirect()->route("laporan_pemesanan.index");
         }
     }
@@ -103,28 +110,35 @@ class LaporanPemesananController extends Controller
         $rules = [
             'tanggal_pemesanan' =>'required',
             'nomor_pemesanan'   =>'required',
-            'costumer'          =>'required',
-            'no_telp'           =>'required',
+            'costumer'      =>'required',
+            'harga'         =>'required',
+            'nota'          =>'required',
+            'jenis'         =>'required',
         ];
 
         $niceNames = [
             'tanggal_pemesanan' =>'Tanggal Pemesanan',
             'nomor_pemesanan'   =>'Nomor Pemesanan',
-            'costumer'          =>'Costumer',
-            'no_telp'           =>'No. Telepon',
+            'costumer'      =>'Costumer',
+            'harga'         =>'Harga',
+            'nota'          =>'Nota',
+            'jenis'         =>'Jenis',
         ];
 
         $validator = Validator::make(Input::all(),$rules, [], $niceNames);
+
         if ($validator->fails()){
-            return redirect()->route('laporan_pemesanan.edit', $id)->withInput()->withErrors($validator);
+            return redirect()->route('laporan_pemesanan.create')->withInput()->withErrors($validator);
         }else{
-            $field                    = LaporanPemesanan::find($id);
+            $field                =LaporanPemesanan::find($id);
             $field->tanggal_pemesanan = $request->tanggal_pemesanan;
             $field->nomor_pemesanan   = $request->nomor_pemesanan;
-            $field->costumer          = $request->costumer;
-            $field->no_telp           = $request->no_telp;
+            $field->costumer      = $request->costumer;
+            $field->harga         = $request->harga;
+            $field->nota          = $request->nota;
+            $field->jenis         = $request->jenis;
             $field->save();
-            $request->session()->flash('success', 'Pemesanan berhasil diupdate!');
+            $request->session()->flash('success', 'pemesanan berhasil Update!');
             return redirect()->route("laporan_pemesanan.index");
         }
     }
@@ -139,12 +153,12 @@ class LaporanPemesananController extends Controller
     {
         $field = LaporanPemesanan::find($id);
         $field->delete();
-        $request->session()->flash('success', 'Pemesan berhasil dihapus!');
+        $request->session()->flash('success', 'pemesanan berhasil dihapus!');
         return redirect()->route("laporan_pemesanan.index");
     }
 
     public function json(Request $request){
-        $field = LaporanPemesanan::select(['tanggal_pemesanan', 'nomor_pemesanan', 'costumer', 'no_telp']);
+        $field = LaporanPemesanan::select('id','tanggal_pemesanan', 'nomor_pemesanan', 'costumer', 'nota', 'harga', 'jenis');
         return  Datatables::of($field)
                 ->filter(function ($query) use ($request) {
                     if ($request->filled(['tanggal_awal','tanggal_akhir'])) {

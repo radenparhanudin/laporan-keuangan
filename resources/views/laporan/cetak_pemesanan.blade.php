@@ -23,11 +23,11 @@
     </head>
     <body>
         <table id="tabel" class="table table-bordered table-striped nowrap" style="width: 100%">
-            <caption><h1 class="text-center">Laporan Jasa</h1></caption>
+            <caption><h1 class="text-center">Laporan Pemesanan</h1></caption>
             <thead>
                 <tr>
                     <th  style="vertical-align: middle; text-align: center;">No</th>
-                    <th  style="vertical-align: middle; text-align: center;">Tanggal Jasa</th>
+                    <th  style="vertical-align: middle; text-align: center;">Tanggal Pemesanan</th>
                     <th  style="vertical-align: middle; text-align: center;">Nomor</th>
                     <th  style="vertical-align: middle; text-align: center;">Costumer</th>
                     <th  style="vertical-align: middle; text-align: center;">Nota</th>
@@ -39,11 +39,11 @@
                 @php
                     $no = 1;
                 @endphp
-                @foreach ($jasa as $field)
+                @foreach ($pemesanan as $field)
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
-                        <td >{{ $field->tanggal_jasa }}</td>
-                        <td class="text-center">{{ $field->nomor_jasa }}</td>
+                        <td >{{ $field->tanggal_pemesanan }}</td>
+                        <td class="text-center">{{ $field->nomor_pemesanan }}</td>
                         <td >{{ $field->costumer }}</td>
                         <td class="text-right">{{ $field->nota }}</td>
                         <td class="text-right">{{ number_format($field->harga, 2, ',', '.') }}</td>

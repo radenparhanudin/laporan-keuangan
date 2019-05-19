@@ -55,9 +55,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Note</label>
+                                <label class="col-sm-3 control-label">Nota</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="nota" id="nota" value="{{ $laporan_jasa->nota }}" class="form-control" placeholder="Note">
+                                    <input type="text" name="nota" id="nota" value="{{ $laporan_jasa->nota }}" class="form-control" placeholder="Nota">
                                     @if ($errors->has('nota'))
                                         <span class="invalid-feedback text-danger" role="alert">
                                             {{ $errors->first('nota') }}
@@ -77,34 +77,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Keterangan</label>
+                                <label class="col-sm-3 control-label">Jenis</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="keterangan" id="keterangan" value="{{ $laporan_jasa->keterangan }}" class="form-control" placeholder="Keterangan">
-                                    @if ($errors->has('keterangan'))
+                                    <input type="text" name="jenis" id="jenis" value="{{ $laporan_jasa->jenis }}" class="form-control" placeholder="Jenis">
+                                    @if ($errors->has('jenis'))
                                         <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('keterangan') }}
-                                        </span>
-                                    @endif      
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Penjelasan</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="penjelasan" id="penjelasan" value="{{ $laporan_jasa->penjelasan }}" class="form-control" placeholder="Penjelasan">
-                                    @if ($errors->has('penjelasan'))
-                                        <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('penjelasan') }}
-                                        </span>
-                                    @endif      
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Jumlah</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="jumlah" id="jumlah" value="{{ $laporan_jasa->jumlah }}" class="form-control" placeholder="Jumlah">
-                                    @if ($errors->has('jumlah'))
-                                        <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('jumlah') }}
+                                            {{ $errors->first('jenis') }}
                                         </span>
                                     @endif      
                                 </div>
@@ -126,7 +104,7 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $("#tanggal_pemesanan").datepicker({
+            $("#tanggal_jasa").datepicker({
                 autoclose: true,
                 todayBtn : 'linked',
                 todayHighlight: true,

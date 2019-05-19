@@ -14,7 +14,7 @@
         <div class="col-sm-8 col-sm-offset-2">
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h1 class="box-title">Edit <span class="backto">Kas</span></h1>
+                    <h1 class="box-title">Edit <span class="backto">Jasa</span></h1>
                 </div>
                 <div class="box-body">
                     <form class="form-horizontal" action="{{ route('laporan_kas.update', [$laporan_kas->id]) }}" method="POST">
@@ -44,45 +44,45 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Keterangan</label>
+                                <label class="col-sm-3 control-label">Costumer</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="keterangan" id="keterangan" value="{{ $laporan_kas->keterangan }}" class="form-control" placeholder="Keterangan">
-                                    @if ($errors->has('keterangan'))
+                                    <input type="text" name="costumer" id="costumer" value="{{ $laporan_kas->costumer }}" class="form-control" placeholder="Costumer">
+                                    @if ($errors->has('costumer'))
                                         <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('keterangan') }}
+                                            {{ $errors->first('costumer') }}
                                         </span>
                                     @endif      
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Debit</label>
+                                <label class="col-sm-3 control-label">Nota</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="debit" id="debit" value="{{ $laporan_kas->debit }}" class="form-control" placeholder="Debit">
-                                    @if ($errors->has('debit'))
+                                    <input type="text" name="nota" id="nota" value="{{ $laporan_kas->nota }}" class="form-control" placeholder="Nota">
+                                    @if ($errors->has('nota'))
                                         <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('debit') }}
+                                            {{ $errors->first('nota') }}
                                         </span>
                                     @endif      
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Kredit</label>
+                                <label class="col-sm-3 control-label">Harga</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="kredit" id="kredit" value="{{ $laporan_kas->kredit }}" class="form-control" placeholder="Kredit">
-                                    @if ($errors->has('kredit'))
+                                    <input type="text" name="harga" id="harga" value="{{ $laporan_kas->harga }}" class="form-control" placeholder="Harga">
+                                    @if ($errors->has('harga'))
                                         <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('kredit') }}
+                                            {{ $errors->first('harga') }}
                                         </span>
                                     @endif      
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Saldo</label>
+                                <label class="col-sm-3 control-label">Jenis</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="saldo" id="saldo" value="{{ $laporan_kas->saldo }}" class="form-control" placeholder="Saldo">
-                                    @if ($errors->has('saldo'))
+                                    <input type="text" name="jenis" id="jenis" value="{{ $laporan_kas->jenis }}" class="form-control" placeholder="Jenis">
+                                    @if ($errors->has('jenis'))
                                         <span class="invalid-feedback text-danger" role="alert">
-                                            {{ $errors->first('saldo') }}
+                                            {{ $errors->first('jenis') }}
                                         </span>
                                     @endif      
                                 </div>

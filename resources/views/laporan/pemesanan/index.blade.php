@@ -16,7 +16,8 @@
                 <div class="box-header with-border">
                     <h1 class="box-title">Data Pemesanan</span></h1>
                     <div class="pull-right">
-                        <a href="{{ route('laporan_pemesanan.create') }}" class="btn btn-warning flat"><i class="fa fa-plus"></i><span class="backto"> Tambah Pesanan</span></a>
+                        <a href="{{ route('laporan_pemesanan.create') }}" class="btn btn-warning flat"><i class="fa fa-plus"></i><span class="backto"> Tambah Pemesanan</span></a>
+                        <a href="{{ route('cetakpemesanan.index') }}" target="_blank" class="btn btn-danger flat"><i class="fa fa-print"></i> Laporan Pemesanan</a>
                     </div>
                 </div>
                 <div class="box-body">
@@ -47,12 +48,21 @@
                                   <th>Tanggal Pemesanan</th>
                                   <th>Nomor</th>
                                   <th>Costumer</th>
-                                  <th>No. Telepon</th>
+                                  <th>Nota</th>
+                                  <th>Harga</th>
+                                  <th>Jenis</th>
                                   <th class="text-center" style="width: 100px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4" style="text-align:right">Total Pemesanan : </th>
+                                <th></th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -76,16 +86,19 @@
                         d.tanggal_akhir = $('input[name=tanggal_akhir]').val();
                     }
                 },
+                // "order": [[ 4, "desc" ]],
                 columns: [
                     { data: 'tanggal_pemesanan', name: 'tanggal_pemesanan' },
                     { data: 'nomor_pemesanan', name: 'nomor_pemesanan' },
                     { data: 'costumer', name: 'costumer' },
-                    { data: 'no_telp', name: 'no_telp' },
+                    { data: 'nota', name: 'nota' },
+                    { data: 'harga', name: 'harga' },
+                    { data: 'jenis', name: 'jenis' },
                     { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
                     // { className: "hidden", "targets": [ 4 ] },
-                    // { className: "text-right", "targets": [ 3 ] },
+                    { className: "text-right", "targets": [ 4 ] },
                     // { className: "text-right", "targets": [ 2 ] },
                     // { className: "text-center", "targets": [ 5 ] }
                 ],
@@ -107,23 +120,51 @@
                         "sLast":     "Terakhir"
                     }
                 },
+                "footerCallback": function ( row, data, start, end, display ) {
+                    var api = this.api(), data;
+         
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\.\$,]/g, '')/100 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+         
+                    // Total over all pages
+                    total = api
+                        .column( 4 )
+                        .data()
+                        .reduce( function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0 );
+         
+                   
+                    // Update footer
+                    $( api.column( 4 ).footer() ).html(
+                        'Rp. ' + commaSeparateNumber(total)
+                    );
+                },
             });
             new $.fn.dataTable.FixedHeader( table );
-
-            $('#search-form').on('submit', function(e) {
-                table.draw();
-                e.preventDefault();
-            });
-
-            $(".tanggal").datepicker({
-                autoclose: true,
-                todayBtn : 'linked',
-                todayHighlight: true,
-                language:'id',
-                format: "yyyy-mm-dd"
-            });
+            function commaSeparateNumber(val) {
+                while (/(\d+)(\d{3})/.test(val.toString())) {
+                    val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+                }
+                return val;
+            }
+        });
+        $('#search-form').on('submit', function(e) {
+            table.draw();
+            e.preventDefault();
         });
 
+        $(".tanggal").datepicker({
+            autoclose: true,
+            todayBtn : 'linked',
+            todayHighlight: true,
+            language:'id',
+            format: "yyyy-mm-dd"
+        });
     </script>
 @endpush
-

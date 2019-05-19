@@ -47,10 +47,10 @@
                             <tr>
                                   <th>Tanggal Kas</th>
                                   <th>Nomor</th>
-                                  <th>Keterangan</th>
-                                  <th>Debit</th>
-                                  <th>Kredit</th>
-                                  <th>Saldo</th>
+                                  <th>Costumer</th>
+                                  <th>Nota</th>
+                                  <th>Harga</th>
+                                  <th>Jenis</th>
                                   <th class="text-center" style="width: 100px">Aksi</th>
                             </tr>
                         </thead>
@@ -58,11 +58,9 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="3" style="text-align:right">Total Kas : </th>
+                                <th colspan="4" style="text-align:right">Total Kas : </th>
                                 <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th colspan="2"></th>
                             </tr>
                         </tfoot>
                     </table>
@@ -88,18 +86,19 @@
                         d.tanggal_akhir = $('input[name=tanggal_akhir]').val();
                     }
                 },
+                // "order": [[ 4, "desc" ]],
                 columns: [
                     { data: 'tanggal_kas', name: 'tanggal_kas' },
                     { data: 'nomor_kas', name: 'nomor_kas' },
-                    { data: 'keterangan', name: 'keterangan' },
-                    { data: 'debit', name: 'debit' },
-                    { data: 'kredit', name: 'kredit' },
-                    { data: 'saldo', name: 'saldo' },
+                    { data: 'costumer', name: 'costumer' },
+                    { data: 'nota', name: 'nota' },
+                    { data: 'harga', name: 'harga' },
+                    { data: 'jenis', name: 'jenis' },
                     { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
                     // { className: "hidden", "targets": [ 4 ] },
-                    { className: "text-right", "targets": [ 3, 4, 5 ] },
+                    { className: "text-right", "targets": [ 4 ] },
                     // { className: "text-right", "targets": [ 2 ] },
                     // { className: "text-center", "targets": [ 5 ] }
                 ],
@@ -133,20 +132,8 @@
                     };
          
                     // Total over all pages
-                    total_debit = api
-                        .column( 3 )
-                        .data()
-                        .reduce( function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0 );
-                    total_kredit = api
+                    total = api
                         .column( 4 )
-                        .data()
-                        .reduce( function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0 );
-                    total_saldo = api
-                        .column( 5 )
                         .data()
                         .reduce( function (a, b) {
                             return intVal(a) + intVal(b);
@@ -154,16 +141,8 @@
          
                    
                     // Update footer
-                    $( api.column( 3 ).footer() ).html(
-                        'Rp. ' + commaSeparateNumber(total_debit)
-                    );
-                     // Update footer
                     $( api.column( 4 ).footer() ).html(
-                        'Rp. ' + commaSeparateNumber(total_kredit)
-                    );
-                     // Update footer
-                    $( api.column( 5 ).footer() ).html(
-                        'Rp. ' + commaSeparateNumber(total_saldo)
+                        'Rp. ' + commaSeparateNumber(total)
                     );
                 },
             });
@@ -174,19 +153,18 @@
                 }
                 return val;
             }
+        });
+        $('#search-form').on('submit', function(e) {
+            table.draw();
+            e.preventDefault();
+        });
 
-            $('#search-form').on('submit', function(e) {
-                table.draw();
-                e.preventDefault();
-            });
-
-            $(".tanggal").datepicker({
-                autoclose: true,
-                todayBtn : 'linked',
-                todayHighlight: true,
-                language:'id',
-                format: "yyyy-mm-dd"
-            });
+        $(".tanggal").datepicker({
+            autoclose: true,
+            todayBtn : 'linked',
+            todayHighlight: true,
+            language:'id',
+            format: "yyyy-mm-dd"
         });
     </script>
 @endpush

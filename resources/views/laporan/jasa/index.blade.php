@@ -45,14 +45,12 @@
                     <table id="tabel" class="table table-bordered table-striped nowrap" style="width: 100%">
                         <thead>
                             <tr>
-                                  <th>Tanggal Pemesanan</th>
+                                  <th>Tanggal Jasa</th>
                                   <th>Nomor</th>
                                   <th>Costumer</th>
                                   <th>Nota</th>
                                   <th>Harga</th>
-                                  <th>Keterangan</th>
-                                  <th>Penjelasan</th>
-                                  <th>Jumlah</th>
+                                  <th>Jenis</th>
                                   <th class="text-center" style="width: 100px">Aksi</th>
                             </tr>
                         </thead>
@@ -62,7 +60,7 @@
                             <tr>
                                 <th colspan="4" style="text-align:right">Total Jasa : </th>
                                 <th></th>
-                                <th colspan="4"></th>
+                                <th colspan="2"></th>
                             </tr>
                         </tfoot>
                     </table>
@@ -95,9 +93,7 @@
                     { data: 'costumer', name: 'costumer' },
                     { data: 'nota', name: 'nota' },
                     { data: 'harga', name: 'harga' },
-                    { data: 'keterangan', name: 'keterangan' },
-                    { data: 'penjelasan', name: 'penjelasan' },
-                    { data: 'jumlah', name: 'jumlah' },
+                    { data: 'jenis', name: 'jenis' },
                     { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
@@ -158,7 +154,6 @@
                 return val;
             }
         });
-
         $('#search-form').on('submit', function(e) {
             table.draw();
             e.preventDefault();

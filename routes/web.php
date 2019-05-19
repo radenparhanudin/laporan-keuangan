@@ -49,5 +49,6 @@ Route::middleware('auth')->group(function (){
     Route::get('cetakkas', 'Laporan@kas')->name('cetakkas.index')->middleware('role:administrator|keuangan');
     Route::get('cetakklise', 'Laporan@klise')->name('cetakklise.index')->middleware('role:administrator|keuangan');
     Route::get('cetakjasa', 'Laporan@jasa')->name('cetakjasa.index')->middleware('role:administrator|keuangan');
+    Route::get('cetakpemesanan', 'Laporan@pemesanan')->name('cetakpemesanan.index')->middleware('role:administrator|keuangan');
     
 });

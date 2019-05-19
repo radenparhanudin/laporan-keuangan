@@ -41,19 +41,20 @@ class LaporanKasController extends Controller
         $rules = [
             'tanggal_kas' =>'required',
             'nomor_kas'   =>'required',
-            'keterangan'  =>'required',
-            'debit'       =>'required',
-            'kredit'      =>'required',
-            'saldo'       =>'required',
+            'costumer'      =>'required',
+            'harga'         =>'required',
+            'nota'          =>'required',
+            'jenis'         =>'required',
+
         ];
 
         $niceNames = [
             'tanggal_kas' =>'Tanggal Pemesanan',
             'nomor_kas'   =>'Nomor Pemesanan',
-            'keterangan'  =>'Costumer',
-            'debit'       =>'Debit',
-            'kredit'      =>'Kredit',
-            'saldo'       =>'Saldo',
+            'costumer'      =>'Costumer',
+            'harga'         =>'Harga',
+            'nota'          =>'Nota',
+            'jenis'         =>'Jenis',
         ];
 
         $validator = Validator::make(Input::all(),$rules, [], $niceNames);
@@ -61,15 +62,15 @@ class LaporanKasController extends Controller
         if ($validator->fails()){
             return redirect()->route('laporan_kas.create')->withInput()->withErrors($validator);
         }else{
-            $field              = new LaporanKas;
+            $field                = new LaporanKas;
             $field->tanggal_kas = $request->tanggal_kas;
             $field->nomor_kas   = $request->nomor_kas;
-            $field->keterangan  = $request->keterangan;
-            $field->debit       = $request->debit;
-            $field->kredit      = $request->kredit;
-            $field->saldo       = $request->saldo;
+            $field->costumer      = $request->costumer;
+            $field->harga         = $request->harga;
+            $field->nota          = $request->nota;
+            $field->jenis          = $request->jenis;
             $field->save();
-            $request->session()->flash('success', 'Kas berhasil ditambahkan!');
+            $request->session()->flash('success', 'kas berhasil ditambahkan!');
             return redirect()->route("laporan_kas.index");
         }
     }
@@ -109,34 +110,35 @@ class LaporanKasController extends Controller
         $rules = [
             'tanggal_kas' =>'required',
             'nomor_kas'   =>'required',
-            'keterangan'  =>'required',
-            'debit'       =>'required',
-            'kredit'      =>'required',
-            'saldo'       =>'required',
+            'costumer'      =>'required',
+            'harga'         =>'required',
+            'nota'          =>'required',
+            'jenis'         =>'required',
         ];
 
         $niceNames = [
             'tanggal_kas' =>'Tanggal Pemesanan',
             'nomor_kas'   =>'Nomor Pemesanan',
-            'keterangan'  =>'Costumer',
-            'debit'       =>'Debit',
-            'kredit'      =>'Kredit',
-            'saldo'       =>'Saldo',
+            'costumer'      =>'Costumer',
+            'harga'         =>'Harga',
+            'nota'          =>'Nota',
+            'jenis'         =>'Jenis',
         ];
 
         $validator = Validator::make(Input::all(),$rules, [], $niceNames);
+
         if ($validator->fails()){
-            return redirect()->route('laporan_kas.edit', $id)->withInput()->withErrors($validator);
+            return redirect()->route('laporan_kas.create')->withInput()->withErrors($validator);
         }else{
-            $field              = LaporanKas::find($id);
+            $field                =LaporanKas::find($id);
             $field->tanggal_kas = $request->tanggal_kas;
             $field->nomor_kas   = $request->nomor_kas;
-            $field->keterangan  = $request->keterangan;
-            $field->debit       = $request->debit;
-            $field->kredit      = $request->kredit;
-            $field->saldo       = $request->saldo;
+            $field->costumer      = $request->costumer;
+            $field->harga         = $request->harga;
+            $field->nota          = $request->nota;
+            $field->jenis         = $request->jenis;
             $field->save();
-            $request->session()->flash('success', 'Kas berhasil diupdate!');
+            $request->session()->flash('success', 'kas berhasil Update!');
             return redirect()->route("laporan_kas.index");
         }
     }
@@ -151,12 +153,12 @@ class LaporanKasController extends Controller
     {
         $field = LaporanKas::find($id);
         $field->delete();
-        $request->session()->flash('success', 'Kas berhasil dihapus!');
+        $request->session()->flash('success', 'kas berhasil dihapus!');
         return redirect()->route("laporan_kas.index");
     }
 
     public function json(Request $request){
-        $field = LaporanKas::select('tanggal_kas', 'nomor_kas', 'keterangan', 'debit', 'kredit', 'saldo', 'created_at', 'updated_at');
+        $field = LaporanKas::select('id','tanggal_kas', 'nomor_kas', 'costumer', 'nota', 'harga', 'jenis');
         return  Datatables::of($field)
                 ->filter(function ($query) use ($request) {
                     if ($request->filled(['tanggal_awal','tanggal_akhir'])) {

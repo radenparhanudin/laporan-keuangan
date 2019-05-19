@@ -41,21 +41,20 @@ class LaporanJasaController extends Controller
         $rules = [
             'tanggal_jasa' =>'required',
             'nomor_jasa'   =>'required',
-            'costumer'     =>'required',
-            'harga'        =>'required',
-            'keterangan'   =>'required',
-            'penjelasan'   =>'required',
-            'jumlah'       =>'required',
+            'costumer'      =>'required',
+            'harga'         =>'required',
+            'nota'          =>'required',
+            'jenis'         =>'required',
+
         ];
 
         $niceNames = [
             'tanggal_jasa' =>'Tanggal Pemesanan',
             'nomor_jasa'   =>'Nomor Pemesanan',
-            'costumer'     =>'Costumer',
-            'harga'        =>'Harga',
-            'keterangan'   =>'Keterangan',
-            'penjelasan'   =>'Penjelasan',
-            'jumlah'       =>'Jumlah',
+            'costumer'      =>'Costumer',
+            'harga'         =>'Harga',
+            'nota'          =>'Nota',
+            'jenis'         =>'Jenis',
         ];
 
         $validator = Validator::make(Input::all(),$rules, [], $niceNames);
@@ -69,9 +68,7 @@ class LaporanJasaController extends Controller
             $field->costumer     = $request->costumer;
             $field->harga        = $request->harga;
             $field->nota         = $request->nota;
-            $field->keterangan   = $request->keterangan;
-            $field->penjelasan   = $request->penjelasan;
-            $field->jumlah       = $request->jumlah;
+            $field->jenis        = $request->jenis;
             $field->save();
             $request->session()->flash('success', 'Jasa berhasil ditambahkan!');
             return redirect()->route("laporan_jasa.index");
@@ -113,21 +110,19 @@ class LaporanJasaController extends Controller
         $rules = [
             'tanggal_jasa' =>'required',
             'nomor_jasa'   =>'required',
-            'costumer'     =>'required',
-            'harga'        =>'required',
-            'keterangan'   =>'required',
-            'penjelasan'   =>'required',
-            'jumlah'       =>'required',
+            'costumer'      =>'required',
+            'harga'         =>'required',
+            'nota'          =>'required',
+            'jenis'         =>'required',
         ];
 
         $niceNames = [
             'tanggal_jasa' =>'Tanggal Pemesanan',
             'nomor_jasa'   =>'Nomor Pemesanan',
-            'costumer'     =>'Costumer',
-            'harga'        =>'Harga',
-            'keterangan'   =>'Keterangan',
-            'penjelasan'   =>'Penjelasan',
-            'jumlah'       =>'Jumlah',
+            'costumer'      =>'Costumer',
+            'harga'         =>'Harga',
+            'nota'          =>'Nota',
+            'jenis'         =>'Jenis',
         ];
 
         $validator = Validator::make(Input::all(),$rules, [], $niceNames);
@@ -135,15 +130,13 @@ class LaporanJasaController extends Controller
         if ($validator->fails()){
             return redirect()->route('laporan_jasa.create')->withInput()->withErrors($validator);
         }else{
-            $field               =LaporanJasa::find($id);
+            $field                =LaporanJasa::find($id);
             $field->tanggal_jasa = $request->tanggal_jasa;
             $field->nomor_jasa   = $request->nomor_jasa;
-            $field->costumer     = $request->costumer;
-            $field->harga        = $request->harga;
-            $field->nota         = $request->nota;
-            $field->keterangan   = $request->keterangan;
-            $field->penjelasan   = $request->penjelasan;
-            $field->jumlah       = $request->jumlah;
+            $field->costumer      = $request->costumer;
+            $field->harga         = $request->harga;
+            $field->nota          = $request->nota;
+            $field->jenis         = $request->jenis;
             $field->save();
             $request->session()->flash('success', 'Jasa berhasil Update!');
             return redirect()->route("laporan_jasa.index");
@@ -165,7 +158,7 @@ class LaporanJasaController extends Controller
     }
 
     public function json(Request $request){
-        $field = LaporanJasa::select('tanggal_jasa','nomor_jasa','costumer','nota','harga','keterangan','penjelasan','jumlah');
+        $field = LaporanJasa::select('id','tanggal_jasa', 'nomor_jasa', 'costumer', 'nota', 'harga', 'jenis');
         return  Datatables::of($field)
                 ->filter(function ($query) use ($request) {
                     if ($request->filled(['tanggal_awal','tanggal_akhir'])) {

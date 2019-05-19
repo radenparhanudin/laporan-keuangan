@@ -50,4 +50,11 @@ class Laporan extends Controller
         return $pdf->stream();
     }
 
+     public function pemesanan()
+    {
+        $pemesanan = LaporanPemesanan::all();
+        $pdf = PDF::loadView('laporan.cetak_pemesanan', ['pemesanan' => $pemesanan]);
+        return $pdf->stream("Pemesanan.pdf", array('compress' => 0));
+        // return $pdf->stream("Pemesanan.pdf", array("Attachment" => false));
+    }
 }

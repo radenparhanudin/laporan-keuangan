@@ -23,16 +23,16 @@
     </head>
     <body>
         <table id="tabel" class="table table-bordered table-striped nowrap" style="width: 100%">
-            <caption><h1 class="text-center">Laporan KAS</h1></caption>
+            <caption><h1 class="text-center">Laporan Kas</h1></caption>
             <thead>
                 <tr>
                     <th  style="vertical-align: middle; text-align: center;">No</th>
                     <th  style="vertical-align: middle; text-align: center;">Tanggal Kas</th>
                     <th  style="vertical-align: middle; text-align: center;">Nomor</th>
-                    <th  style="vertical-align: middle; text-align: center;">Keterangan</th>
-                    <th  style="vertical-align: middle; text-align: center;">Debit</th>
-                    <th  style="vertical-align: middle; text-align: center;">Kredit</th>
-                    <th  style="vertical-align: middle; text-align: center;">Saldo</th>
+                    <th  style="vertical-align: middle; text-align: center;">Costumer</th>
+                    <th  style="vertical-align: middle; text-align: center;">Nota</th>
+                    <th  style="vertical-align: middle; text-align: center;">Harga</th>
+                    <th  style="vertical-align: middle; text-align: center;">Jenis</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,10 +44,10 @@
                         <td class="text-center">{{ $no++ }}</td>
                         <td >{{ $field->tanggal_kas }}</td>
                         <td class="text-center">{{ $field->nomor_kas }}</td>
-                        <td >{{ $field->keterangan }}</td>
-                        <td class="text-right">{{ number_format($field->debit, 2, ',', '.') }}</td>
-                        <td class="text-right">{{ number_format($field->kredit, 2, ',', '.') }}</td>
-                        <td class="text-right">{{ number_format($field->saldo, 2, ',', '.') }}</td>
+                        <td >{{ $field->costumer }}</td>
+                        <td class="text-right">{{ $field->nota }}</td>
+                        <td class="text-right">{{ number_format($field->harga, 2, ',', '.') }}</td>
+                        <td class="text-right">{{ $field->jenis }}</td>
                     </tr>
                 @endforeach
             </tbody>
