@@ -44,7 +44,7 @@
                     <li class="{{ set_active(['stok.index', 'stok.create', 'stok.edit']) }}"><a href="{{ route('stok.index') }}"><i class="fa fa-circle-o"></i> Penambahan Stok Produk</a></li>
                 </ul>
             </li>
-            <li class="treeview {{ set_active(['laporan.index', 'laporan_pemesanan.index','laporan_pemesanan.create', 'laporan_pemesanan.edit','laporan_jasa.index','laporan_jasa.create', 'laporan_jasa.edit', 'laporan_klise.index','laporan_klise.create', 'laporan_klise.edit','laporan_kas.index','laporan_kas.create', 'laporan_kas.edit']) }}">
+            <li class="treeview {{ set_active(['laporan.index', 'laporan_pemesanan.index','laporan_pemesanan.create', 'laporan_pemesanan.edit','laporan_jasa.index','laporan_jasa.create', 'laporan_jasa.edit', 'laporan_klise.index','laporan_klise.create', 'laporan_klise.edit','laporan_kas.index','laporan_kas.create', 'laporan_kas.edit', 'laporan_lainnya.index']) }}">
                 <a href="#">
                 <i class="fa fa-book"></i>
                 <span>Laporan</span>
@@ -57,6 +57,7 @@
                     <li class="{{ set_active(['laporan_pemesanan.index','laporan_pemesanan.create', 'laporan_pemesanan.edit']) }}"><a href="{{ route('laporan_pemesanan.index') }}"><i class="fa fa-circle-o"></i><span> Pemesanan</span></a></li>
                     <li class="{{ set_active(['laporan_jasa.index','laporan_jasa.create', 'laporan_jasa.edit']) }}"><a href="{{ route('laporan_jasa.index') }}"><i class="fa fa-circle-o"></i><span> Jasa</span></a></li>
                     <li class="{{ set_active(['laporan_klise.index','laporan_klise.create', 'laporan_klise.edit']) }}"><a href="{{ route('laporan_klise.index') }}"><i class="fa fa-circle-o"></i><span> Klise</span></a></li>
+                     <li class="{{ set_active(['laporan_lainnya.index','laporan_lainnya.create', 'laporan_lainnya.edit']) }}"><a href="{{ route('laporan_lainnya.index') }}"><i class="fa fa-circle-o"></i><span> Lainnya</span></a></li>
                     <li class="{{ set_active(['laporan_kas.index','laporan_kas.create', 'laporan_kas.edit']) }}"><a href="{{ route('laporan_kas.index') }}"><i class="fa fa-circle-o"></i><span> Kas</span></a></li>
                 </ul>
             </li>
